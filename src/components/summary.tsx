@@ -10,10 +10,10 @@ import toast from "react-hot-toast";
 const Summary = () => {
   const searchParams = useSearchParams();
   const items = useCart((state) => state.items);
-  console.log(
-    "items",
-    items.map((item) => item.id)
-  );
+  //   console.log(
+  //     "items",
+  //     items.map((item) => item.id)
+  //   );
   const removeAll = useCart((state) => state.removeAll);
   const totalPrice = items.reduce((total, item) => {
     return total + Number(item.price);
@@ -46,7 +46,11 @@ const Summary = () => {
           <Currency value={totalPrice} />
         </div>
       </div>
-      <Button className="w-full mt-6" onClick={onCheckout}>
+      <Button
+        className="w-full mt-6"
+        disabled={items.length === 0}
+        onClick={onCheckout}
+      >
         Checkout
       </Button>
     </div>
