@@ -6,12 +6,18 @@ import React from "react";
 import { IconButton } from "./icon-button";
 import { Expand, ShoppingCart } from "lucide-react";
 import { Currency } from "./currency";
+import { useRouter } from "next/navigation";
 
 interface ProductCard {
   data: Product;
 }
 
 export const ProductCard: React.FC<ProductCard> = ({ data }) => {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push(`/product/${data?.id}`);
+  };
+
   return (
     <div className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4">
       <div className="aspect-square rounded-xl bg-gray-100 relative">
@@ -19,7 +25,7 @@ export const ProductCard: React.FC<ProductCard> = ({ data }) => {
         <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5">
           <div className="flex gap-x-6 justify-center">
             <IconButton
-              onClick={() => {}}
+              onClick={handleClick}
               icon={<Expand size={20} />}
               className="text-gray-600"
             />
